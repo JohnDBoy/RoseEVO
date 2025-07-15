@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.05.03"/>
+    <PROJECT value="..\SHO_GS.exe"/>
+    <OBJFILES value="OBJs\SHO_GS_EXE.obj OBJs\PreHEADER.obj OBJs\FrmMAIN.obj OBJs\FrmDBCFG.obj 
+      OBJs\FrmGSCFG.obj OBJs\BCB_Tools.obj OBJs\FrmDataDIR.obj OBJs\FrmABOUT.obj 
+      OBJs\CVclTHREAD.obj OBJs\classSYNCOBJ.obj OBJs\CGS_API.obj 
+      OBJs\FrmLogMODE.obj OBJs\FrmANNOUNCE.obj OBJs\classSYS.obj 
+      OBJs\FrmOPTION.obj OBJs\CProcess.obj"/>
+    <RESFILES value="SHO_GS_EXE.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) FrmMAIN.dfm FrmDBCFG.dfm FrmGSCFG.dfm FrmDataDIR.dfm 
+      ..\..\Common\FrmABOUT.dfm ..\..\BCB_Util\FrmLogMODE.dfm 
+      ..\..\BCB_Util\FrmANNOUNCE.dfm FrmOPTION.dfm"/>
+    <LIBFILES value="..\SHO_GS_DLL.lib"/>
+    <LIBRARIES value="bcbsmp50.lib Vclx50.lib Vcl50.lib"/>
+    <SPARELIBS value="Vcl50.lib Vclx50.lib bcbsmp50.lib"/>
+    <PACKAGES value="Vcl50.bpi Vclx50.bpi bcbsmp50.bpi Vcldb50.bpi ibsmp50.bpi VCLBDE50.bpi 
+      ZipPack.bpi vclado50.bpi vcldbx50.bpi Qrpt50.bpi TeeUI50.bpi TeeDB50.bpi 
+      Tee50.bpi Dss50.bpi TeeQR50.bpi VCLIB50.bpi Vclmid50.bpi vclie50.bpi 
+      Inetdb50.bpi Inet50.bpi NMFast50.bpi webmid50.bpi bcbie50.bpi dclocx50.bpi 
+      bcb2kaxserver50.bpi"/>
+    <PATHCPP value=".;..\..\BCB_Util;..\..\Common;..\..\..\LIB_Util"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="tlink32"/>
+    <USERDEFINES value="_DEBUG"/>
+    <SYSDEFINES value="NO_STRICT"/>
+    <MAINSOURCE value="SHO_GS_EXE.cpp"/>
+    <INCLUDEPATH value="..\..\Common;..\..\SHO_LS\SHO_LS_EXE;..\..\BCB_Util;C:\Borland\CBuilder5\Projects\;$(BCB)\include;$(BCB)\include\vcl;..\..\..\LIB_Util;..\..\..\Client\Util"/>
+    <LIBPATH value="..\..\..\LIB_Util;..\..\Common;..\..\SHO_LS\SHO_LS_EXE;..\..\BCB_Util;C:\Borland\CBuilder5\Projects\;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;&quot;C:\Borland\CBuilder5\Lib\PSDK\&quot;"/>
+    <WARNINGS value="-w-par"/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-I..\..\Common -I..\..\SHO_LS\SHO_LS_EXE -I..\..\BCB_Util 
+      -IC:\Borland\CBuilder5\Projects\. -I$(BCB)\include -I$(BCB)\include\vcl 
+      -I..\..\..\LIB_Util -I..\..\..\Client\Util -src_suffix cpp -D_DEBUG -boa"/>
+    <CFLAG1 value="-Od -H=$(BCB)\lib\SHO_GS.csm -Vx -Ve -xp -X- -r- -a8 -6 -b- -k -y -v -vi- 
+      -c -tW -tWM"/>
+    <PFLAGS value="-N2OBJs -N0OBJs -$Y+ -$W -$O- -$I- -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zi"/>
+    <LFLAGS value="-IOBJs -D&quot;&quot; -aa -Tpe -x -Gn -v"/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0w32.obj sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib"/>
+  </LINKER>
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=0
+AutoIncBuild=0
+MajorVer=1
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1042
+CodePage=949
+
+[Version Info Keys]
+CompanyName=
+FileDescription=
+FileVersion=1.0.0.0
+InternalName=
+LegalCopyright=
+LegalTrademarks=
+OriginalFilename=
+ProductName=
+ProductVersion=1.0.0.0
+Comments=
+
+[Excluded Packages]
+C:\Borland\CoolFormD6\CoolDTPackage.bpl=Cool components
+
+[HistoryLists\hlIncludePath]
+Count=8
+Item0=..\..\Common;..\..\SHO_LS\SHO_LS_EXE;..\..\BCB_Util;C:\Borland\CBuilder5\Projects\;$(BCB)\include;$(BCB)\include\vcl;..\..\..\LIB_Util;..\..\..\Client\Util
+Item1=..\..\SHO_LS\SHO_LS_EXE;..\..\BCB_Util;C:\Borland\CBuilder5\Projects\;$(BCB)\include;$(BCB)\include\vcl;..\..\..\LIB_Util;..\..\..\Client\Util
+Item2=..\..\BCB_Util;C:\Borland\CBuilder5\Projects\;$(BCB)\include;$(BCB)\include\vcl;..\..\..\LIB_Util;..\..\..\Client\Util
+Item3=..\..\BCB_Util;C:\Borland\CBuilder5\Projects\;$(BCB)\include;$(BCB)\include\vcl;D:\Project2003\OnlineRPG\LIB_Util;D:\Project2003\OnlineRPG\Client\Util
+Item4=..\..\BCB_Util;C:\Borland\CBuilder5\Projects\;$(BCB)\include;$(BCB)\include\vcl
+Item5=C:\Borland\CBuilder5\Projects\;$(BCB)\include;$(BCB)\include\vcl
+Item6=C:\Borland\CBuilder5\Projects;$(BCB)\include;$(BCB)\include\vcl
+Item7=$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=9
+Item0=..\..\..\LIB_Util;..\..\Common;..\..\SHO_LS\SHO_LS_EXE;..\..\BCB_Util;C:\Borland\CBuilder5\Projects\;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;C:\Borland\CBuilder5\Lib\PSDK\
+Item1=..\..\..\LIB_Util;..\..\Common;..\..\SHO_LS\SHO_LS_EXE;..\..\BCB_Util;C:\Borland\CBuilder5\Projects\;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;C:\Borland\CBuilder5\Lib\PSDK
+Item2=..\..\..\LIB_Util;..\..\Common;..\..\SHO_LS\SHO_LS_EXE;..\..\BCB_Util;C:\Borland\CBuilder5\Projects\;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item3=..\..\Common;..\..\SHO_LS\SHO_LS_EXE;..\..\BCB_Util;C:\Borland\CBuilder5\Projects\;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item4=..\..\SHO_LS\SHO_LS_EXE;..\..\BCB_Util;C:\Borland\CBuilder5\Projects\;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item5=..\..\BCB_Util;C:\Borland\CBuilder5\Projects\;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item6=C:\Borland\CBuilder5\Projects\;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item7=C:\Borland\CBuilder5\Projects;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item8=$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=1
+Item0=_DEBUG
+
+[HistoryLists\hlIntOutputDir]
+Count=1
+Item0=OBJs
+
+[HistoryLists\hlFinalOutputDir]
+Count=3
+Item0=..\
+Item1=../\
+Item2=../
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=D:\Project2003\OnlineRPG\Server\SHO_GS\SHO_GS.DLL
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=1
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+
+[Language]
+ActiveLang=
+ProjectLang=
+RootDir=
+  </IDEOPTIONS>
+</PROJECT>

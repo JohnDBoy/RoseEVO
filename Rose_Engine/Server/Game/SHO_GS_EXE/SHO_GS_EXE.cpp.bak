@@ -1,0 +1,110 @@
+//---------------------------------------------------------------------------
+
+#include "PreHEADER.h"
+
+USEUNIT("PreHEADER.cpp");
+USERES("SHO_GS_EXE.res");
+USEFORM("FrmMAIN.cpp", FormMAIN);
+USEFORM("FrmDBCFG.cpp", FormDBCFG);
+USEFORM("FrmGSCFG.cpp", FormGSCFG);
+USEUNIT("..\..\BCB_Util\BCB_Tools.cpp");
+USEFORM("FrmDataDIR.cpp", FormDataDIR);
+USEFORM("..\..\Common\FrmABOUT.cpp", FormABOUT);
+USEUNIT("..\..\BCB_Util\CVclTHREAD.cpp");
+USEUNIT("..\..\..\LIB_Util\classSYNCOBJ.cpp");
+USEUNIT("CGS_API.cpp");
+USEFORM("..\..\BCB_Util\FrmLogMODE.cpp", FormLogMODE);
+USEFORM("..\..\BCB_Util\FrmANNOUNCE.cpp", FormAnnounce);
+USELIB("..\SHO_GS_DLL.lib");
+USEUNIT("..\..\..\LIB_Util\classSYS.cpp");
+USEFORM("FrmOPTION.cpp", FormOPTION);
+USEUNIT("..\..\..\LIB_Util\CProcess.cpp");
+//---------------------------------------------------------------------------
+HINSTANCE   g_hCurInstance;
+
+#include <excpt.h>
+#include "../SHO_GS_DLL/SHO_GS_DLL.h"
+
+
+LONG	__stdcall GS_Execption2( EXCEPTION_POINTERS* pExPtrs )
+{
+    ::MessageBox( NULL, "1111", "aaaa", MB_OK );
+    return 1;
+}
+
+WINAPI WinMain(HINSTANCE hCurInstance, HINSTANCE hPrevInstance, LPSTR, int)
+{
+/*
+m_hMutex = CreateMutex(NULL, TRUE, MUTEX_STRING_ROSEONLINE);
+
+	// Mutex를 생성했을 경우
+	if(m_hMutex == NULL) 
+	{
+		return FALSE;
+	}
+	else 
+	{
+		DWORD dwError = ::GetLastError();
+
+		// 이미 다른 프로세스에 의해서 Mutex가 생성됐을 경우
+		if(dwError == ERROR_ALREADY_EXISTS || dwError == ERROR_ACCESS_DENIED )
+		{
+			// Mutex를 소유하지 못했으므로 핸들만 닫아주고 리턴한다.
+			::CloseHandle(m_hMutex);
+
+			return FALSE;
+		}
+	}*/	
+    HANDLE  hMUTEX;
+
+    try
+    {
+        const char szMUTEX[] = "SHO_GS";
+
+        hMUTEX = OpenMutex( MUTEX_ALL_ACCESS, false, szMUTEX );
+        if ( hMUTEX )
+            return 0;
+        hMUTEX = CreateMutex( NULL, true, szMUTEX );
+
+         g_hCurInstance = hCurInstance;
+
+         Application->Initialize();
+         Application->Title = "SHO_GS";
+         Application->CreateForm(__classid(TFormMAIN), &FormMAIN);
+         Application->CreateForm(__classid(TFormDBCFG), &FormDBCFG);
+         Application->CreateForm(__classid(TFormGSCFG), &FormGSCFG);
+         Application->CreateForm(__classid(TFormDataDIR), &FormDataDIR);
+         Application->CreateForm(__classid(TFormABOUT), &FormABOUT);
+         Application->CreateForm(__classid(TFormLogMODE), &FormLogMODE);
+         Application->CreateForm(__classid(TFormAnnounce), &FormAnnounce);
+         Application->CreateForm(__classid(TFormOPTION), &FormOPTION);
+
+         Application->Run();
+/*
+         __try {
+             Application->Run();
+         }
+         __except( GS_Execption2( GetExceptionInformation() ) )
+         {
+         }
+*/
+    }
+/*
+         __except( GS_Execption2( GetExceptionInformation() ) )
+         {
+         }
+*/
+///*
+    catch (  Exception &exception  )
+    {
+        Application->ShowException(&exception);
+    }
+//*/
+
+    ReleaseMutex( hMUTEX );
+    CloseHandle( hMUTEX );
+
+    return 0;
+}
+//---------------------------------------------------------------------------
+

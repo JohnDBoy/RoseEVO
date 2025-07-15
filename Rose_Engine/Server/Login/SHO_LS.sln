@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SHO_LS_LIB", "SHO_LS_LIB\SHO_LS_LIB.vcproj", "{EAA486DA-52FA-430E-A24F-4B759BB62E8A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SHO_LS_DLL", "SHO_LS_DLL\SHO_LS_DLL.vcproj", "{F09B4844-4191-4235-8220-EDFDF56E1FBA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EAA486DA-52FA-430E-A24F-4B759BB62E8A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EAA486DA-52FA-430E-A24F-4B759BB62E8A}.Release|Win32.ActiveCfg = Release|Win32
+		{F09B4844-4191-4235-8220-EDFDF56E1FBA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F09B4844-4191-4235-8220-EDFDF56E1FBA}.Debug|Win32.Build.0 = Debug|Win32
+		{F09B4844-4191-4235-8220-EDFDF56E1FBA}.Release|Win32.ActiveCfg = Release|Win32
+		{F09B4844-4191-4235-8220-EDFDF56E1FBA}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

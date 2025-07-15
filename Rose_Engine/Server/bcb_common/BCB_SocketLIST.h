@@ -1,0 +1,270 @@
+#ifndef BCB_SocketLISTH
+#define BCB_SocketLISTH
+#include "classHASH.h"
+#include "classTIME.h"
+#include "CDataPOOL.h"
+#include "BCB_Socket.h"
+//---------------------------------------------------------------------------
+/*
+    BCB_SocketLIST:: dType은 BCB_Socket을 상속받은 클래스여야 한다.
+*/
+#define BCB_SOCKET_HASH_SIZE        512
+#define BCB_SOCKET_POOL_SIZE        2048
+#define INC_SOCKET_POOL_SIZE        512
+
+#define RESULT_APPEND_OK            0
+#define RESULT_APPEND_DUP_IP        1
+#define RESULT_APPEND_OUT_OF_MEM    2
+
+template <class dType>
+class BCB_SocketLIST : public CDataPOOL< classDLLNODE<dType> >
+{
+private  :
+    CCriticalSection      m_csLIST;
+
+    classHASH   <dType*> *m_pHashIPADDR;
+
+protected:
+
+    classHASH   <dType*> *m_pHashSockID;
+    classDLLIST <dType >  m_LIST;
+    classTIME             m_Timer;
+
+	classDLLNODE<dType> *Real_Alloc ()
+    {
+        classDLLNODE< dType > *pNode;
+        pNode = new classDLLNODE< dType >;
+        return pNode;
+    }
+	void Real_Free( classDLLNODE<dType> *pData )    {   delete pData;   }
+
+//  void InitData ( classDLLNODE<dType> * pData)    {   /* nop */       }
+
+public :
+    inline void LockLIST()      {   m_csLIST.Lock();   }
+    inline void UnlockLIST()    {   m_csLIST.Unlock(); }
+
+    BCB_SocketLIST (char *szName, int iDefPoolSize=BCB_SOCKET_POOL_SIZE, int iIncPoolSize=INC_SOCKET_POOL_SIZE, int iHashTableSize=BCB_SOCKET_HASH_SIZE);
+    virtual ~BCB_SocketLIST ();
+
+    int  GetCount ()            {  return m_LIST.GetNodeCount();   }
+    void FreeLIST ();
+
+    virtual int  Append (TCustomWinSocket *Socket, t_HASHKEY ipHashKEY, bool bAllowDupIP);
+    virtual void Delete (classDLLNODE <dType> *pConnNODE);
+
+    DWORD   GetSocketID (BCB_Socket *pBCBSocket);
+
+    dType*  GetSocket(DWORD dwSocketID);
+    void    ProcSEND (void);
+
+    virtual int OnACCEPT( TCustomWinSocket *Socket, t_HASHKEY ipHashKEY, bool bAllowDupIP )
+    {
+        Socket->Data = NULL;
+        int iResult = this->Append( Socket, ipHashKEY, bAllowDupIP );
+        switch ( iResult  ) {
+            case RESULT_APPEND_DUP_IP   :
+                // 이미 접속되어 있는것이 일정시간동안 아무것도 하지 않고 있다면 짤라버리고 이걸로 대체...
+            case RESULT_APPEND_OUT_OF_MEM   :
+                // 더이상 사용자를 받을수 없거나 중복 접속 중이다.
+                Socket->Close ();
+                break;
+        }
+        return iResult;
+    }
+    virtual void OnCONNECT( TCustomWinSocket *Socket )
+    {
+        ;
+    }
+    virtual void OnDISCONNECT( TCustomWinSocket *Socket )
+    {
+        if ( NULL != Socket->Data ) {
+            classDLLNODE< dType > *pNode = (classDLLNODE< dType > *)Socket->Data;
+            Socket->Data = NULL;
+            this->Delete( pNode );
+        }
+    }
+    virtual void OnREAD( TCustomWinSocket *Socket )
+    {
+        if ( NULL != Socket->Data ) {
+            classDLLNODE< dType > *pNode = (classDLLNODE< dType > *)Socket->Data;
+            pNode->DATA.ON_Read ();
+        }
+    }
+    virtual void OnWRITE( TCustomWinSocket *Socket )
+    {
+        if ( NULL != Socket->Data ) {
+            classDLLNODE< dType > *pNode = (classDLLNODE< dType > *)Socket->Data;
+            pNode->DATA.ON_Write ();
+        }
+    }
+} ;
+
+
+//-------------------------------------------------------------------------------------------------
+template <class dType>
+BCB_SocketLIST<dType>::BCB_SocketLIST (char *szName, int iDefPoolSize, int iIncPoolSize, int iHashTableSize) : CDataPOOL< classDLLNODE<dType> > ( szName, iDefPoolSize, iIncPoolSize )
+{
+    // 동시에 대기할수 있는 클라이언트가 몇개나 ??
+    m_pHashIPADDR = new classHASH< dType* > ( 128 );
+    
+    m_pHashSockID = new classHASH< dType* > ( iHashTableSize );
+    m_Timer.InitStartTime ();
+}
+template <class dType>
+BCB_SocketLIST<dType>::~BCB_SocketLIST ()
+{
+//    CMemPOOL< classDLLNODE<dType> * >::DeletePool ();
+    delete m_pHashSockID;
+    m_pHashSockID = NULL;
+
+    delete m_pHashIPADDR;
+    m_pHashIPADDR = NULL;
+}
+
+//-------------------------------------------------------------------------------------------------
+template <class dType>
+void BCB_SocketLIST<dType>::FreeLIST ()
+{
+    Log_String(LOG_DEBUG, ">>>>>> BCB_SocketLIST<dType>->FreeLIST");
+
+    classDLLNODE <dType> *pNode;
+
+    this->LockLIST ();	// classCLIENTMANAGER::_Free
+        pNode = m_LIST.GetHeadNode ();
+        while ( pNode != NULL ) {
+            if ( pNode->DATA.m_pSocket->Connected ) {
+                Log_String (LOG_DEBUG, "Close client socket ....\n");
+                pNode->DATA.m_pSocket->Close ();
+            }
+
+            // Event FD_COLSOE 발생에 의해 유저 노드가 삭제될것이다.
+
+            pNode = m_LIST.GetHeadNode ();
+        }
+    this->UnlockLIST ();
+
+    Log_String(LOG_DEBUG, "<<<<<< BCB_SocketLIST<dType>->FreeLIST");
+}
+
+//-------------------------------------------------------------------------------------------------
+template <class dType>
+int BCB_SocketLIST<dType>::Append (TCustomWinSocket *Socket, t_HASHKEY ipHashKEY, bool bAllowDupIP)
+{
+    if ( !bAllowDupIP ) {
+        // 같은 ip에서 접속된넘이 있는가?
+        dType *pFindSock;
+
+        // 대기 리스트에 같은 IP주소가 접속되어 있으면 접속 바로 끊는다.
+        tagHASH<dType*> *pHashNode;
+        this->LockLIST ();
+        pHashNode = m_pHashIPADDR->Search( ipHashKEY );
+        pFindSock = pHashNode ? pHashNode->m_DATA : NULL;
+        this->UnlockLIST ();
+        if ( pFindSock ) {
+            // 중복 접속된 IP중 일정시간이 지났으면 삭제...
+            DWORD dwCurTime = ::timeGetTime ();
+            if ( dwCurTime - pFindSock->m_dwLastActionTime >= 1000 * 10 ) {
+                // 바로 클로즈 가능한가 ???
+                pFindSock->m_pSocket->Close ();
+            } else
+                return RESULT_APPEND_DUP_IP;
+        }
+
+    }
+
+    classDLLNODE <dType> *pNewNode;
+
+    pNewNode = this->Pool_Alloc ();
+    if ( pNewNode == NULL ) {
+        // Error Message ...
+        // FormLogMODE->Log_String (LOG_NORMAL, "ERROR[%s:%d] : New Connection Memory Allocation Failed ...\n", __FILE__, __LINE__);
+        ;
+        return RESULT_APPEND_OUT_OF_MEM;
+    }
+
+    Socket->Data = pNewNode;
+
+    DWORD dwSocketID;
+    this->LockLIST ();	// classCLIENTMANAGER::Connect
+        pNewNode->DATA.m_IPHashKEY = ipHashKEY;
+        if ( ipHashKEY )
+            m_pHashIPADDR->Insert( ipHashKEY, &pNewNode->DATA );
+
+        // dwSocketID = bGetSocketID ? this->GetSocketID( &pNewNode->DATA ) : 0;
+        dwSocketID = this->GetSocketID( &pNewNode->DATA );
+
+        m_LIST.AppendNode (pNewNode);
+        m_pHashSockID->Insert( dwSocketID, &pNewNode->DATA );
+
+        pNewNode->DATA._Init( Socket, dwSocketID );
+    this->UnlockLIST ();
+
+    return RESULT_APPEND_OK;
+}
+
+//-------------------------------------------------------------------------------------------------
+template <class dType>
+void BCB_SocketLIST<dType>::Delete (classDLLNODE <dType> *pConnNODE)
+{
+    this->LockLIST ();
+        if ( pConnNODE->DATA.m_IPHashKEY )
+            m_pHashIPADDR->Delete( pConnNODE->DATA.m_IPHashKEY, &pConnNODE->DATA );
+
+        m_LIST.DeleteNode( pConnNODE );
+        if ( pConnNODE->DATA.GetSocketID() ) {
+            m_pHashSockID->Delete( pConnNODE->DATA.GetSocketID() );
+        }
+    this->UnlockLIST ();
+
+	pConnNODE->DATA._Free ();
+	this->Pool_Free( pConnNODE );
+}
+
+//-------------------------------------------------------------------------------------------------
+template <class dType>
+DWORD BCB_SocketLIST<dType>::GetSocketID (BCB_Socket *pBCBSocket)
+{
+    DWORD dwSocketID;
+    this->LockLIST ();	// classCLIENTMANAGER::Connect
+        do {
+            dwSocketID = m_Timer.GetPassAbsMilliSecond ();  // classTIME::InitStartTime() 호출후 현재까지 경과된 1/100 초를 구한다.
+        } while( m_pHashSockID->Search( dwSocketID ) );
+        //} while( !dwSocketID || m_pHashSockID->Search( dwSocketID ) );
+        // pBCBSocket->SetSocketID( dwSocketID );
+    this->UnlockLIST ();
+    
+    return dwSocketID;
+}
+
+//-------------------------------------------------------------------------------------------------
+template <class dType>
+dType* BCB_SocketLIST<dType>::GetSocket (DWORD dwSocketID)
+{
+    return m_pHashSockID->Search( dwSocketID );
+}
+
+//-------------------------------------------------------------------------------------------------
+template <class dType>
+void BCB_SocketLIST<dType>::ProcSEND (void)
+{
+    static classDLLNODE <dType> *pConnNODE;
+    static DWORD dwCurrentTime;
+
+    dwCurrentTime = ::timeGetTime ();
+
+//  this->m_bReadyToSEND = false;
+    this->LockLIST ();
+    pConnNODE = m_LIST.GetHeadNode ();
+    while ( pConnNODE ) {
+        if ( !pConnNODE->DATA.SendPacket () ) {
+            ;
+        }
+
+        pConnNODE = m_LIST.GetNextNode (pConnNODE);
+    }
+    this->UnlockLIST ();
+}
+
+//---------------------------------------------------------------------------
+#endif

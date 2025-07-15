@@ -1,0 +1,155 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.05.03"/>
+    <PROJECT value="..\SHO_LS.exe"/>
+    <OBJFILES value="OBJs\SHO_LS_EXE.obj OBJs\PreHEADER.obj OBJs\FrmMAIN.obj OBJs\FrmABOUT.obj 
+      OBJs\FrmLSCFG.obj OBJs\BCB_Tools.obj OBJs\CLS_API.obj OBJs\CVclTHREAD.obj 
+      OBJs\classSYNCOBJ.obj OBJs\FrmANNOUNCE.obj OBJs\FrmLogMODE.obj 
+      OBJs\FrmLoginRIGHT.obj OBJs\FrmLimitUSER.obj"/>
+    <RESFILES value="SHO_LS_EXE.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) FrmMAIN.dfm ..\..\Common\FrmABOUT.dfm FrmLSCFG.dfm 
+      ..\..\BCB_Util\FrmANNOUNCE.dfm ..\..\BCB_Util\FrmLogMODE.dfm 
+      FrmLoginRIGHT.dfm FrmLimitUSER.dfm"/>
+    <LIBFILES value="..\..\..\LIB_Util\BC_LIB\LIB_Util.lib"/>
+    <LIBRARIES value="Vcl50.lib"/>
+    <SPARELIBS value="Vcl50.lib"/>
+    <PACKAGES value="Vcl50.bpi Vcldb50.bpi ibsmp50.bpi VCLBDE50.bpi ZipPack.bpi Vclx50.bpi 
+      bcbsmp50.bpi vclado50.bpi vcldbx50.bpi Qrpt50.bpi TeeUI50.bpi TeeDB50.bpi 
+      Tee50.bpi Dss50.bpi TeeQR50.bpi VCLIB50.bpi Vclmid50.bpi vclie50.bpi 
+      Inetdb50.bpi Inet50.bpi NMFast50.bpi webmid50.bpi bcbie50.bpi dclocx50.bpi 
+      bcb2kaxserver50.bpi"/>
+    <PATHCPP value=".;..\..\Common;..\..\BCB_Util;..\..\..\LIB_Util"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="tlink32"/>
+    <USERDEFINES value="__SERVER;_DEBUG"/>
+    <SYSDEFINES value="NO_STRICT"/>
+    <MAINSOURCE value="SHO_LS_EXE.cpp"/>
+    <INCLUDEPATH value="..\..\SHO_GS\SHO_GS_EXE;..\..\Common;C:\Borland\CBuilder5\Projects\;$(BCB)\include;$(BCB)\include\vcl;..\..\BCB_Util;..\..\..\Client\Util;..\..\..\LIB_Util"/>
+    <LIBPATH value="..\..\SHO_GS\SHO_GS_EXE;..\..\..\LIB_Util;..\..\BCB_Util;..\..\Common;C:\Borland\CBuilder5\Projects\;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\..\..\LIB_Util\BC_LIB;..\..\..\LIB_Server\BC_LIB;D:\SDK\MySQL\BC_lib\;&quot;C:\Borland\CBuilder5\Lib\PSDK\&quot;"/>
+    <WARNINGS value="-w-par"/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-I..\..\SHO_GS\SHO_GS_EXE -I..\..\Common -IC:\Borland\CBuilder5\Projects\. 
+      -I$(BCB)\include -I$(BCB)\include\vcl -I..\..\BCB_Util 
+      -I..\..\..\Client\Util -I..\..\..\LIB_Util -src_suffix cpp -D__SERVER 
+      -D_DEBUG -boa"/>
+    <CFLAG1 value="-Od -H=$(BCB)\lib\SHO_LS.csm -Vx -Ve -X- -r- -a8 -6 -b- -k -y -v -vi- -c 
+      -tW -tWM"/>
+    <PFLAGS value="-N2OBJs -N0OBJs -$Y+ -$W -$O- -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zi"/>
+    <LFLAGS value="-IOBJs -D&quot;&quot; -aa -Tpe -x -Gn -v"/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0w32.obj sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib"/>
+  </LINKER>
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=0
+AutoIncBuild=0
+MajorVer=1
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1042
+CodePage=949
+
+[Version Info Keys]
+CompanyName=
+FileDescription=
+FileVersion=1.0.0.0
+InternalName=
+LegalCopyright=
+LegalTrademarks=
+OriginalFilename=
+ProductName=
+ProductVersion=1.0.0.0
+Comments=
+
+[Excluded Packages]
+C:\Borland\CoolFormD6\CoolDTPackage.bpl=Cool components
+
+[HistoryLists\hlIncludePath]
+Count=8
+Item0=..\..\SHO_GS\SHO_GS_EXE;..\..\Common;C:\Borland\CBuilder5\Projects\;$(BCB)\include;$(BCB)\include\vcl;..\..\BCB_Util;..\..\..\Client\Util;..\..\..\LIB_Util
+Item1=..\..\Common;C:\Borland\CBuilder5\Projects\;$(BCB)\include;$(BCB)\include\vcl;..\..\BCB_Util;..\..\..\Client\Util;..\..\..\LIB_Util
+Item2=..\..\Common;C:\Borland\CBuilder5\Projects\;$(BCB)\include;$(BCB)\include\vcl;..\..\BCB_Util;D:\Project2003\OnlineRPG\Client\Util;D:\Project2003\OnlineRPG\LIB_Util
+Item3=..\..\Common;C:\Borland\CBuilder5\Projects\;$(BCB)\include;$(BCB)\include\vcl;..\..\BCB_Util
+Item4=..\..\Common;C:\Borland\CBuilder5\Projects\;$(BCB)\include;$(BCB)\include\vcl;D:\Project2003\OnlineRPG\Server\BCB_Util
+Item5=..\..\Common;C:\Borland\CBuilder5\Projects\;$(BCB)\include;$(BCB)\include\vcl;..\..\..\LIB_Util
+Item6=..\..\Common;C:\Borland\CBuilder5\Projects\;$(BCB)\include;$(BCB)\include\vcl;D:\Project2003\OnlineRPG\LIB_Util
+Item7=..\..\Common;C:\Borland\CBuilder5\Projects\;$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=7
+Item0=..\..\SHO_GS\SHO_GS_EXE;..\..\..\LIB_Util;..\..\BCB_Util;..\..\Common;C:\Borland\CBuilder5\Projects\;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\..\..\LIB_Util\BC_LIB;..\..\..\LIB_Server\BC_LIB;D:\SDK\MySQL\BC_lib\;C:\Borland\CBuilder5\Lib\PSDK\
+Item1=..\..\BCB_Util;..\..\Common;C:\Borland\CBuilder5\Projects\;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\..\..\LIB_Util\BC_LIB;..\..\..\LIB_Server\BC_LIB;D:\SDK\MySQL\BC_lib\;C:\Borland\CBuilder5\Lib\PSDK\
+Item2=..\..\BCB_Util;..\..\Common;C:\Borland\CBuilder5\Projects\;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\..\..\LIB_Util\BC_LIB;..\..\..\LIB_Server\BC_LIB;D:\SDK\MySQL\BC_lib\;C:\Borland\CBuilder5\Lib\PSDK
+Item3=..\..\BCB_Util;..\..\Common;C:\Borland\CBuilder5\Projects\;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\..\..\LIB_Util\BC_LIB;..\..\..\LIB_Server\BC_LIB;D:\SDK\MySQL\BC_lib\
+Item4=..\..\BCB_Util;..\..\Common;C:\Borland\CBuilder5\Projects\;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;D:\Project2003\OnlineRPG\LIB_Util\BC_LIB;D:\Project2003\OnlineRPG\LIB_Server\BC_LIB;D:\SDK\MySQL\BC_lib
+Item5=..\..\BCB_Util;..\..\Common;C:\Borland\CBuilder5\Projects\;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+Item6=..\..\Common;C:\Borland\CBuilder5\Projects\;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=2
+Item0=c:\borland\cbuilder5\source\vcl;D:\Project2003\OnlineRPG\LIB_Util\
+Item1=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=4
+Item0=__SERVER;_DEBUG
+Item1=__SERVER
+Item2=_DEBUG;__SERVER
+Item3=_DEBUG
+
+[HistoryLists\hlIntOutputDir]
+Count=1
+Item0=OBJs
+
+[HistoryLists\hlFinalOutputDir]
+Count=2
+Item0=..\
+Item1=D:\Project2003\OnlineRPG\Server\SHO_LS
+
+[Debugging]
+DebugSourceDirs=c:\borland\cbuilder5\source\vcl;D:\Project2003\OnlineRPG\LIB_Util\
+
+[Parameters]
+RunParams=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=1
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+
+[Language]
+ActiveLang=
+ProjectLang=
+RootDir=
+  </IDEOPTIONS>
+</PROJECT>

@@ -1,0 +1,127 @@
+//---------------------------------------------------------------------------
+
+#ifndef FrmMAINH
+#define FrmMAINH
+//---------------------------------------------------------------------------
+#include <Classes.hpp>
+#include <Controls.hpp>
+#include <StdCtrls.hpp>
+#include <Forms.hpp>
+#include <ComCtrls.hpp>
+#include <ExtCtrls.hpp>
+#include <ImgList.hpp>
+#include <Menus.hpp>
+#include <ToolWin.hpp>
+#include "classLOG.h"
+//---------------------------------------------------------------------------
+class TFormMAIN : public TForm
+{
+__published:	// IDE-managed Components
+    TMainMenu *MainMenuMAIN;
+    TSplitter *Splitter1;
+    TToolBar *ToolBar1;
+    TImageList *ImageListToolBAR;
+    TPageControl *PageControl1;
+    TTabSheet *TabSheet1;
+    TListView *ListViewCLIENT;
+    TTabSheet *TabSheet2;
+    TListView *ListViewSERVER;
+    TStatusBar *StatusBar1;
+    TPanel *Panel1;
+    TMemo *MemoLOG;
+    TToolButton *ToolButtonSTART;
+    TToolButton *ToolButtonSHUTDOWN;
+    TMenuItem *System1;
+    TMenuItem *Option1;
+    TMenuItem *Help1;
+    TPopupMenu *PopupMenuLOG;
+    TMenuItem *Clear1;
+    TPopupMenu *PopupMenuGSV;
+    TMenuItem *SendGsvANNOUNCE;
+    TMenuItem *SetConnectRIGHT;
+    TMenuItem *SendDisconnect;
+    TTabSheet *TabSheet3;
+    TListView *ListViewIP;
+    TMenuItem *N1;
+    TMenuItem *N2;
+    TMenuItem *N3;
+    TToolButton *ToolButtonCloseCLIENT;
+    TToolButton *ToolButton6;
+    TToolButton *ToolButtonHELP;
+    TToolButton *ToolButton8;
+    TMenuItem *MS_Start1;
+    TMenuItem *MS_Shutdown1;
+    TMenuItem *N4;
+    TMenuItem *Exit1;
+    TMenuItem *MS_Acceptclient1;
+    TMenuItem *MS_Donotacceptclient1;
+    TMenuItem *N5;
+    TMenuItem *MO_AnnounceChat;
+    TMenuItem *N6;
+    TMenuItem *Setlogmode1;
+    TMenuItem *Setlimitusercount1;
+    TMenuItem *Setloginright1;
+    void __fastcall FormCreate(TObject *Sender);
+    void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
+    void __fastcall MS_Start1Click(TObject *Sender);
+    void __fastcall ToolButtonSTARTClick(TObject *Sender);
+    void __fastcall MS_Shutdown1Click(TObject *Sender);
+    void __fastcall ToolButtonSHUTDOWNClick(TObject *Sender);
+    void __fastcall ToolButtonHELPClick(TObject *Sender);
+    void __fastcall ToolButtonCloseCLIENTClick(TObject *Sender);
+    void __fastcall MS_Acceptclient1Click(TObject *Sender);
+    void __fastcall MS_Donotacceptclient1Click(TObject *Sender);
+    void __fastcall MO_AnnounceChatClick(TObject *Sender);
+    void __fastcall SendGsvANNOUNCEClick(TObject *Sender);
+    void __fastcall SetConnectRIGHTClick(TObject *Sender);
+    void __fastcall Setlogmode1Click(TObject *Sender);
+    void __fastcall Setlimitusercount1Click(TObject *Sender);
+    void __fastcall Setloginright1Click(TObject *Sender);
+    void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
+    void __fastcall Clear1Click(TObject *Sender);
+	void __fastcall Exit1Click(TObject *Sender);
+
+private:	// User declarations
+    void CheckInterface ();
+
+public:		// User declarations
+    __fastcall TFormMAIN(TComponent* Owner);
+
+    bool   m_bAutoStart;
+    String m_stINIFile;
+    short  m_nProcSTEP;
+
+    String m_stDBIP;
+    String m_stClientPORT;
+    String m_stServerPORT;
+    String m_stLoginRIGHT;
+    int    m_iLimitUserCNT;
+
+    bool   m_bUseGUMS;
+    String m_stGumsIP;
+    String m_stGumsPORT;
+
+    bool   m_bShowOnlyWS;
+
+    union {
+        BYTE    m_btMD5[ 33 ];
+	    DWORD	m_dwMD5[ 8 ];
+    } ;
+    
+    bool Go_NextStep();
+    void SendAnnounceChat(String stAnnounceMSG);
+    WORD GetLogMODE (t_LOG logType);
+	void SetLogMODE (WORD wLogMODE, t_LOG logType=LOG_SCR);
+
+    void SetLoginRIGHT( int iRight );
+    void SetLimitUserCNT( int iLimitUserCNT );
+
+    void UpdateLoginRIGHT( int iRight );
+    void UpdateLimitUSER( int iLimitUserCNT );
+    
+    void __fastcall AppMessage(tagMSG &Msg, bool &Handled);
+};
+//---------------------------------------------------------------------------
+extern PACKAGE TFormMAIN *FormMAIN;
+//---------------------------------------------------------------------------
+#endif

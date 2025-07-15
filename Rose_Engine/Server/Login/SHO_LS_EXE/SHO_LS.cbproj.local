@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2009/02/09 14:43:24.115.cpp,D:\ROSE\Server\bcb_common\BCB_SQL.cpp=</Transaction>
+    <Transaction>2009/02/09 14:43:41.975.cpp,D:\ROSE\Server\bcb_common\CChatROOM.cpp=</Transaction>
+    <Transaction>2009/02/09 14:44:02.694.cpp,D:\ROSE\Server\bcb_common\CDB_Socket.cpp=</Transaction>
+    <Transaction>2009/02/09 14:45:29.740.cpp,D:\ROSE\Server\bcb_common\CPartyLIST.cpp=</Transaction>
+    <Transaction>2009/02/09 14:45:46.381.cpp,D:\ROSE\Server\bcb_common\CThreadMSGR.cpp=</Transaction>
+    <Transaction>2009/02/09 14:47:19.975.cpp,D:\ROSE\Server\Util\classMD5.cpp=</Transaction>
+    <Transaction>2009/02/09 15:01:50.694.cbproj,D:\ROSE\Server\Login\SHO_LS_EXE\SHO_LS_EXE.cbproj=D:\ROSE\Server\Login\SHO_LS_EXE\SHO_LS.cbproj</Transaction>
+  </Transactions>
+</BorlandProject>

@@ -1,0 +1,54 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{73ae39c1-5486-408d-84d3-c308beabcbdc}</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Projects Include="Game\SHO_GS_EXE\SHO_GS.cbproj" />
+    <Projects Include="Login\SHO_LS_EXE\SHO_LS.cbproj" />
+    <Projects Include="World\SHO_WS_EXE\SHO_WS.cbproj" />
+  </ItemGroup>
+  <ProjectExtensions>
+    <Borland.Personality>Default.Personality</Borland.Personality>
+    <Borland.ProjectType />
+    <BorlandProject>
+  <BorlandProject xmlns=""> <Default.Personality> </Default.Personality> </BorlandProject></BorlandProject>
+  </ProjectExtensions>
+  <Target Name="SHO_LS">
+    <MSBuild Projects="Login\SHO_LS_EXE\SHO_LS.cbproj" Targets="" />
+  </Target>
+  <Target Name="SHO_LS:Clean">
+    <MSBuild Projects="Login\SHO_LS_EXE\SHO_LS.cbproj" Targets="Clean" />
+  </Target>
+  <Target Name="SHO_LS:Make">
+    <MSBuild Projects="Login\SHO_LS_EXE\SHO_LS.cbproj" Targets="Make" />
+  </Target>
+  <Target Name="SHO_WS">
+    <MSBuild Projects="World\SHO_WS_EXE\SHO_WS.cbproj" Targets="" />
+  </Target>
+  <Target Name="SHO_WS:Clean">
+    <MSBuild Projects="World\SHO_WS_EXE\SHO_WS.cbproj" Targets="Clean" />
+  </Target>
+  <Target Name="SHO_WS:Make">
+    <MSBuild Projects="World\SHO_WS_EXE\SHO_WS.cbproj" Targets="Make" />
+  </Target>
+  <Target Name="SHO_GS">
+    <MSBuild Projects="Game\SHO_GS_EXE\SHO_GS.cbproj" Targets="" />
+  </Target>
+  <Target Name="SHO_GS:Clean">
+    <MSBuild Projects="Game\SHO_GS_EXE\SHO_GS.cbproj" Targets="Clean" />
+  </Target>
+  <Target Name="SHO_GS:Make">
+    <MSBuild Projects="Game\SHO_GS_EXE\SHO_GS.cbproj" Targets="Make" />
+  </Target>
+  <Target Name="Build">
+    <CallTarget Targets="SHO_LS;SHO_WS;SHO_GS" />
+  </Target>
+  <Target Name="Clean">
+    <CallTarget Targets="SHO_LS:Clean;SHO_WS:Clean;SHO_GS:Clean" />
+  </Target>
+  <Target Name="Make">
+    <CallTarget Targets="SHO_LS:Make;SHO_WS:Make;SHO_GS:Make" />
+  </Target>
+  <Import Condition="Exists('$(MSBuildBinPath)\Borland.Group.Targets')" Project="$(MSBuildBinPath)\Borland.Group.Targets" />
+</Project>

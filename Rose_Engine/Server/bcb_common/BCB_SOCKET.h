@@ -1,0 +1,87 @@
+#ifndef __CCONNECTION_H
+#define __CCONNECTION_H
+#include <vcl.h>
+#include <ScktComp.hpp>
+#include <mmsystem.h>
+#include <tchar.h>
+#include <crtdbg.h>
+#include "BCB_Tools.h"
+#include "classLOG.h"
+#include "classSTR.h"
+#include "classHASH.h"
+#include "DLLIST.h"
+#include "PacketHEADER.h"
+#include "classSYNCOBJ.h"
+#include "ioDataPOOL.h"
+
+//---------------------------------------------------------------------------
+
+/*
+class BCB_Socket : public CSyncOBJ {
+*/
+class BCB_Socket : public CCriticalSection {
+private  :
+    int SendBuf     (void *pBuf, int iCount);
+    int ReceiveBuf  (void *pBuf, int iCount);
+    int ReceiveLength ();
+
+protected:
+    short           m_nRecvByte;            // 현재까지 소켓에서 읽은 바이트수...
+    t_PACKETHEADER *m_pRecvPket;
+    short           m_nSendByte;
+	short			m_nPacketSize;
+
+    virtual void SetSendEVENT (void);
+    virtual void CloseSOCKET (char *szMSG);
+    virtual bool HandlePACKET (void);
+
+	virtual WORD    E_SendP (t_PACKETHEADER *pPacket)       {   return pPacket->m_nSize;    }
+	virtual WORD	D_RecvH (t_PACKETHEADER *pPacket)       {   return pPacket->m_nSize;    }
+	virtual short	D_RecvB (t_PACKETHEADER *pPacket)	    {	return pPacket->m_nSize;	}
+
+public   :
+    t_HASHKEY           m_IPHashKEY;
+
+    DWORD               m_dwSocketID;
+    TCustomWinSocket   *m_pSocket;
+    CRITICAL_SECTION    m_csSENDq;
+
+    inline void LockSENDq()         {   this->Lock();   }
+    inline void UnlockSENDq()       {   this->Unlock(); }
+
+    bool                            m_bIsWritable;          // 소켓이 쓰기 가능한 상태인가 ??
+    DWORD                           m_dwLastActionTime;
+    bool                            m_bCloseSocket;
+
+    classDLLIST <classPACKET*>      m_SendPketQ;
+
+    BCB_Socket ();
+    virtual ~BCB_Socket ();
+
+    virtual bool  _Init (TCustomWinSocket *pSocket, DWORD dwSocketID);
+    virtual void  _Free (void);
+
+//  void  SetSocketID (DWORD dwID)  {   m_dwSocketID = dwID;    }
+    DWORD GetSocketID ()            {   return m_dwSocketID;    }
+
+    void ON_Read (void);
+    void ON_Write (void)            {   m_bIsWritable = true;   }
+
+    bool SendPacket (void);
+    virtual bool AppendSendPacket (classPACKET *pCPacket);
+} ;
+
+/*
+class ENC_Socket : public BCB_Socket
+{
+private :
+
+	WORD    E_SendP (t_PACKETHEADER *pPacket);
+	WORD	D_RecvH (t_PACKETHEADER *pPacket);
+	bool	D_RecvB (t_PACKETHEADER *pPacket);
+} ;
+*/
+
+//---------------------------------------------------------------------------
+#endif
+

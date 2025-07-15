@@ -1,0 +1,230 @@
+//---------------------------------------------------------------------------
+
+#ifndef CVclTHREADH
+#define CVclTHREADH
+//---------------------------------------------------------------------------
+#include <SyncObjs.hpp>
+#include "DLLIST.h"
+#include "classSYNCOBJ.h"
+#include "BCB_Tools.h"
+//---------------------------------------------------------------------------
+
+class CVclDATA
+{
+public :
+    virtual ~CVclDATA ()        {   /* nop */   }
+    virtual void Proc() = 0;
+} ;
+//---------------------------------------------------------------------------
+class CVclLogSTR : public CVclDATA
+{
+private:
+    TMemo  *m_pMemo;
+    String  m_String;
+    int     m_iMaxLines;
+
+public :
+    CVclLogSTR (TMemo *pMemo, char *szStr, int iMaxLines=500)
+    {
+        m_pMemo = pMemo;
+        m_String = szStr;
+        m_iMaxLines = iMaxLines;
+    }
+
+    void Proc ()
+    {
+        if ( m_pMemo->Lines->Count > m_iMaxLines ) {
+            m_pMemo->Lines->Delete ( 0 );
+        }
+
+        m_pMemo->Lines->Add( m_String );
+    }
+} ;
+//---------------------------------------------------------------------------
+class CVclAddListITEM : public CVclDATA
+{
+private:
+    TListView  *m_pListView;
+    TListItem  *m_pListItem;
+    String      m_stCaption;
+    BYTE        m_btSubItemCNT;
+    String     *m_pSubItemSTR;
+
+public :
+    CVclAddListITEM (TListView *pListView, char *szCaption, BYTE btSubItemCNT, void *pOwner)
+    {
+        m_btSubItemCNT = btSubItemCNT;
+        m_pListView = pListView;
+        m_pListItem = new TListItem( pListView->Items );
+        m_pListItem->Data = pOwner;
+        m_pSubItemSTR = new String[ btSubItemCNT ];
+        m_stCaption = szCaption;
+    }
+    CVclAddListITEM (TListView *pListView, int iCaption, BYTE btSubItemCNT, void *pOwner)
+    {
+        m_btSubItemCNT = btSubItemCNT;
+        m_pListView = pListView;
+        m_pListItem = new TListItem( pListView->Items );
+        m_pListItem->Data = pOwner;
+        m_pSubItemSTR = new String[ btSubItemCNT ];
+        m_stCaption = IntToStr( iCaption);
+    }
+    ~CVclAddListITEM ()
+    {
+        if ( m_pSubItemSTR ) {
+            delete[] m_pSubItemSTR;
+            m_pSubItemSTR = NULL;
+        }
+        /*
+        if ( m_pListItem ) {
+            delete m_pListItem;
+            m_pListItem = NULL;
+        }
+        */
+    }
+    void SetSubItem(BYTE btSubItemIDX, char *szValue)
+    {
+        m_pSubItemSTR[ btSubItemIDX ] = szValue;
+    }
+    void SetSubItem(BYTE btSubItemIDX, int iValue)
+    {
+        m_pSubItemSTR[ btSubItemIDX ] = IntToStr( iValue );
+    }
+    TListItem *GetListITEM ()       {   return m_pListItem;     }
+
+    void Proc ()
+    {
+        TLVItem LvITEM;
+
+        LvITEM.mask     = LVIF_PARAM | LVIF_IMAGE;
+        LvITEM.iSubItem = 0;
+        LvITEM.iImage   = I_IMAGECALLBACK;
+        LvITEM.iItem    = m_pListView->Items->Count;
+        LvITEM.lParam   = (LPARAM)m_pListItem;
+        ::SendMessage( m_pListView->Handle, LVM_INSERTITEM, 0, (LPARAM)&LvITEM );
+
+        m_pListItem->Caption = m_stCaption;
+        for (BYTE btI=0; btI<m_btSubItemCNT; btI++) {
+            m_pListItem->SubItems->Add( m_pSubItemSTR[ btI ] );
+        }
+    }
+} ;
+//---------------------------------------------------------------------------
+class CVclDelListITEM : public CVclDATA
+{
+private:
+    TListView *m_pListView;
+    TListItem *m_pListItem;
+
+public :
+    CVclDelListITEM( TListView *pListView, TListItem *pListItem )
+    {
+        m_pListView = pListView;
+        m_pListItem = pListItem;
+    }
+
+    void Proc ()
+    {
+        BCBUtil::DelListITEM( m_pListView, m_pListItem );
+    }
+} ;
+//---------------------------------------------------------------------------
+class CVclSetListITEM : public CVclDATA
+{
+private:
+    TListItem  *m_pListItem;
+    short       m_nSubItemIDX;
+    String      m_stValue;
+
+public :
+    CVclSetListITEM( TListItem *pListItem, short nSubItemIDX, char *szStr)
+    {
+        m_pListItem = pListItem;
+        m_nSubItemIDX = nSubItemIDX;
+        m_stValue = szStr;
+    }
+    CVclSetListITEM( TListItem *pListItem, short nSubItemIDX, int iValue)
+    {
+        m_pListItem = pListItem;
+        m_nSubItemIDX = nSubItemIDX;
+        m_stValue = IntToStr( iValue );
+    }
+
+    void Proc ()
+    {
+        if ( m_nSubItemIDX < 0 )
+            m_pListItem->Caption = m_stValue;
+        else
+            m_pListItem->SubItems->Strings[ m_nSubItemIDX ] = m_stValue;
+    }
+} ;
+
+
+
+//---------------------------------------------------------------------------
+//---------------------------------------------------------------------------
+#define __USE_API_EVENT
+class CVclTHREAD : public TThread
+{
+private:
+#ifdef  __USE_API_EVENT
+    classEVENT  *m_pEvent;
+#else
+    TEvent      *m_pEvent;
+#endif
+
+    TCriticalSection           *m_csDATA;
+    classDLLIST< CVclDATA* >    m_ListWAIT;
+    classDLLIST< CVclDATA* >    m_ListPROC;
+
+    classDLLNODE< CVclDATA* >  *m_pDataNODE;
+
+    static CVclTHREAD *m_pInstance;
+    void __fastcall Free (void);
+    String  m_stTimeSTR;
+
+protected:
+    void __fastcall DrawToVCL();
+    void __fastcall Execute();
+
+public:
+    __fastcall CVclTHREAD(bool CreateSuspended);
+    __fastcall ~CVclTHREAD();
+
+    static bool InitInstance ()
+    {
+        if ( NULL == m_pInstance ) {
+            m_pInstance = new CVclTHREAD( false );
+        }
+        return ( NULL != m_pInstance );
+    }
+    static CVclTHREAD *Instance ()  {   return m_pInstance;     }
+    static void Destroy ()
+    {
+        if ( m_pInstance ) {
+            m_pInstance->Free ();
+            delete m_pInstance;
+            m_pInstance = NULL;
+        }
+    }
+
+    void AddDATA( CVclDATA* pDATA )
+    {
+        m_csDATA->Enter ();
+        m_ListWAIT.AllocNAppend( pDATA );
+        m_csDATA->Leave ();
+
+        m_pEvent->SetEvent ();
+    }
+    char*GetTimeSTR ()
+    {
+        SYSTEMTIME  sysTIME;
+        GetLocalTime (&sysTIME);
+        m_stTimeSTR.printf ("%d/%d [%d:%d:%d]", sysTIME.wMonth, sysTIME.wDay, sysTIME.wHour, sysTIME.wMinute, sysTIME.wSecond);
+        
+        return m_stTimeSTR.c_str();
+    }
+};
+
+//---------------------------------------------------------------------------
+#endif

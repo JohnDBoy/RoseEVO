@@ -1,0 +1,64 @@
+
+#ifndef __BORLANDC__
+	#error >>> ERROR :: must compiled in borland c++ builder !!!
+#endif
+
+#include "../SHO_WS_LIB/CWS_API.h"
+#include "BCB_Tools.h"
+#include "FrmMAIN.h"
+#include "WS_ThreadVCL.h"
+
+//---------------------------------------------------------------------------
+void  __stdcall CEXE_API::WriteLOG(char *szString)
+{
+    CVclLogSTR *pDATA = new CVclLogSTR;
+
+    pDATA->m_String = szString;
+    g_pThreadVCL->AddDATA( pDATA );
+}
+
+//---------------------------------------------------------------------------
+void __stdcall CEXE_API::SetListItem(void *pListItem, int iSubStrIDX, int iValue)
+{
+    if ( pListItem ) {
+        CVclSetITEM *pDATA = new CVclSetITEM;
+
+        pDATA->m_pListItem   = (TListItem*)pListItem;
+        pDATA->m_nSubItemIDX = iSubStrIDX;
+        pDATA->m_iValue      = iValue;
+    }
+}
+
+//---------------------------------------------------------------------------
+void* __stdcall CEXE_API::AddZoneITEM(short nZoneNO, char *szZoneName, char *szServerIP, int iPortNO )
+{
+    TListItem *pItem;
+    pItem = FormMAIN->ListViewZONE->Items->Add ();
+
+    if ( pItem ) {
+        CVclAddITEM *pDATA = new CVclAddITEM;
+
+        pDATA->m_pListItem  = pItem;
+        pDATA->m_nZoneNO    = nZoneNO;
+        pDATA->m_stZone     = szZoneName;
+        pDATA->m_stIP       = szServerIP;
+        pDATA->m_iPortNO    = iPortNO;
+
+        g_pThreadVCL->AddDATA( pDATA );
+    }
+    
+    return pItem;
+}
+//---------------------------------------------------------------------------
+void __stdcall CEXE_API::DelZoneITEM(void *pListItem)
+{
+    if ( pListItem ) {
+        CVclDelITEM *pDATA = new CVclDelITEM;
+
+        pDATA->m_pListItem = (TListItem*)pListItem;
+    }
+
+}
+
+//---------------------------------------------------------------------------
+

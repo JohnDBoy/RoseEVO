@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SHO_WS_DLL", "SHO_WS_DLL\SHO_WS_DLL.vcproj", "{59368FFB-7EDD-46E7-BD58-19EC6415BB1D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SHO_WS_LIB", "SHO_WS_LIB\SHO_WS_LIB.vcproj", "{A4BD70F5-CE47-4747-8723-72C37983D063}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{59368FFB-7EDD-46E7-BD58-19EC6415BB1D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{59368FFB-7EDD-46E7-BD58-19EC6415BB1D}.Release|Win32.ActiveCfg = Release|Win32
+		{A4BD70F5-CE47-4747-8723-72C37983D063}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A4BD70F5-CE47-4747-8723-72C37983D063}.Release|Win32.ActiveCfg = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
