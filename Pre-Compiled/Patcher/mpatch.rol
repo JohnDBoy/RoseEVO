@@ -1,0 +1,21 @@
+SetPatchURL("http://127.0.0.1/patch")
+
+-- Data Versions
+g_BaseVers = {}
+g_BaseVers[ 1 ] = 	{"Loading.upd"}
+--------
+
+bBasePatch = 1
+
+iBaseCNT = #( g_BaseVers )
+
+if(iBaseCNT > 0)
+then
+	for j = 1 , iBaseCNT , 1 do
+			PatchList = g_BaseVers[ j ][ 1 ]
+			if ( 0 == AddPatch( PatchList ) ) 
+			then
+				return	-- ERROR !!!
+			end
+	end
+end

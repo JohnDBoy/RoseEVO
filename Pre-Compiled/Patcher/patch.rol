@@ -1,0 +1,131 @@
+SetNewsItem(  0, "Website", "http://www.roseza.co.za" )
+SetNewsItem(  1, "", "" )
+SetNewsItem(  2, "", "" )
+SetNewsItem(  3, "", "" )
+SetNewsItem(  4, "", "" )
+SetNewsItem(  5, "", "" )
+SetNewsItem(  6, "", "" )
+SetNewsItem(  7, "", "" )
+SetNewsItem(  8, "", "" )
+SetNewsItem(  9, "", "" )
+SetNewsItem( 10, "", "" )
+
+--           IP to connect, Port
+SetRosePath("127.0.0.1", 29000)
+
+-- Data Versions
+g_CurVers = {} -- We start on a Narose 131 client so our version should be over 131
+--g_CurVers[ 1 ] = {737, "Patch_736_737.rar", 0x1899D47C} -- Version, File name, CRC
+--------
+
+-- Directory
+ExePath = "exe_arose"
+PatchPath = "patch_arose"
+--------
+
+-- CRC List
+g_PatchInfo = {} -- Client binaries
+--------
+--g_PatchInfo[  1 ] = { "Updater.exe"				, 0xEDCB3B30		, "Updater.exe" } --Filename to show, CRC, Filename to download
+
+
+
+--------
+
+g_szVFS = "data.idx"
+
+function DoPatch( filename )
+	strFile = PatchPath.."/"..filename
+    DownloadFile2( strFile, filename )
+    DoPatchFile( filename )
+end
+
+function DoPatch( filename, checksum )
+	strFile = PatchPath.."/"..filename
+    DownloadFile2( strFile, filename )
+	
+	if( GetFileChecksum( filename ) ~= checksum ) then
+		DeleteFile( filename )
+		DoPatch( filename, checksum )
+	else
+		DoPatchFile( filename )
+	end
+end
+
+function DwnFile(remote, filename, checksum)
+	remoteFile = ExePath.."/"..remote
+	DownloadFile2(remoteFile, filename )
+	
+	if( GetFileChecksum( filename ) ~= checksum ) then
+		DeleteFile( filename )
+		DwnFile(remote, filename, checksum )
+	end
+end
+
+-------------------------------------------------------------------------------------------------
+-- MAIN ()
+-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+g_iLauncherCRC = 0x8695FE11
+
+--Launcher or the lastest update....
+iCRC 	= GetFileChecksum( "RoseOnline.exe" )
+if(  iCRC ~= g_iLauncherCRC ) then
+	DwnFile ("launcher.exe", "launcher.exe", g_iLauncherCRC)
+	
+	-- Just quit
+	UpdatePatcher( )
+	return 0
+end
+
+for i = 1 , #(g_PatchInfo) , 1 do
+
+	strFile 	= g_PatchInfo[ i ][ 1 ]
+	nCrc 		= g_PatchInfo[ i ][ 2 ]
+	strZipName 	= g_PatchInfo[ i ][ 3 ]
+	
+	iExeCRC = GetFileChecksum( strFile )
+
+	if (  iExeCRC ~= nCrc) then
+		if ( 0 == DwnFile (strZipName, strZipName, nCrc) ) then 
+			return
+		end
+	end
+end
+
+iVer = GetVfsVersion ( )
+if ( 0 == iVer ) 
+then
+	cf_l_PRINT( "iver is nul" )
+	return	-- ERROR !!!
+end
+
+
+
+bCurPatch = 1
+
+iCurCNT = #( g_CurVers )
+
+if(iCurCNT > 0)
+then
+	for j = 1 , iCurCNT , 1 do
+		iCurVer = g_CurVers[ j ][ 1 ]
+
+		if(iVer < iCurVer)
+		then
+			bCurPatch = 2
+			PatchList = g_CurVers[ j ][ 2 ]
+			CheckSum = g_CurVers[ j ][ 3 ]
+			if ( 0 == DoPatch( PatchList, CheckSum ) ) 
+			then
+				cf_l_PRINT( "ERROR: in Base Version Patch" )
+				return	-- ERROR !!!
+			end
+			
+			iVer = iCurVer
+			SetVfsVersion(iVer)
+		end
+	end
+end
+
+return 2 -- DO NOT REMOVE THIS LINE

@@ -1,0 +1,38 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Software\ODBC\ODBC.INI]
+
+[HKEY_CURRENT_USER\Software\ODBC\ODBC.INI\ODBC Data Sources]
+"seven_ORA"="SQL Server"
+"SHO"="SQL Server"
+"SHO_LOG"="SQL Server"
+"SHO_MALL"="SQL Server"
+
+[HKEY_CURRENT_USER\Software\ODBC\ODBC.INI\seven_ORA]
+"Driver"="C:\\WINDOWS\\system32\\SQLSRV32.dll"
+"Description"="seven_ORA"
+"Server"="(local)"
+"Database"="seven_ORA"
+"LastUser"="Administrator"
+"Trusted_Connection"="Yes"
+
+[HKEY_CURRENT_USER\Software\ODBC\ODBC.INI\SHO]
+"Driver"="C:\\WINDOWS\\system32\\SQLSRV32.dll"
+"Description"="SHO"
+"Server"="(local)"
+"LastUser"="Administrator"
+"Trusted_Connection"="Yes"
+
+[HKEY_CURRENT_USER\Software\ODBC\ODBC.INI\SHO_LOG]
+"Driver"="C:\\WINDOWS\\system32\\SQLSRV32.dll"
+"Description"="SHO_LOG"
+"Server"="(local)"
+"LastUser"="Administrator"
+"Trusted_Connection"="Yes"
+
+[HKEY_CURRENT_USER\Software\ODBC\ODBC.INI\SHO_MALL]
+"Driver"="C:\\WINDOWS\\system32\\SQLSRV32.dll"
+"Description"="SHO_MALL"
+"Server"="(local)"
+"LastUser"="Administrator"
+"Trusted_Connection"="Yes" 
