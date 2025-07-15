@@ -1,0 +1,84 @@
+TERMS OF SERVICE
+
+January 28, 2009
+Version 05
+
+Please read the following agreement carefully. With a choice to check the "Options are used", then you are deemed to have read the entire contents of the agreement and stated approving this agreement. By approving this agreement, you agreed, that in case of conflicts of interest that has legal effect, this agreement is legally binding and has the power as evidence in court.
+
+GDH, as a company that is engaged in an online game developer and publisher of online games, which includes, (a) software program and all materials and the supporting documents (collectively called the Program) , and the (b) the provision of online services from GDH (hereinafter referred to as "Service").
+
+Any use of the Service are fully regulated and subject to applicable provisions in the agreement (Terms of Service) This includes any changes made at a later date. There is no compulsion at all to the user to submit to the TOS, but shall be understood that the user is not willing to submit to this TOS will get access to a limited compared to the Users who are willing to voluntarily bind themselves to the TOS.
+
+1. OWNERSHIP
+All rights on all the contents of the Programs and Services is fully owned by the Serenity and licensees. Programs and Services are protected by the laws of the Republic of Indonesia and international law. Programs and Services contain material on the license, which license holders can demand their rights in case of breach of this TOS.
+
+2. MAKING ACCOUNT ID
+For each use of the Programs and Services provided by GDH, each individual is required to register as an ID badge. To register, individuals must be qualified according to law (according to prevailing laws in Indonesia). For individuals who have not entered this category can be represented by a guardian who fall into the criteria of qualified according to law. In the register ID, you are required to provide personal data accurate and current, including the change in personal data. Potential ineligibility in providing personal data accurate and actual or amendment of personal data, is regarded as a material breach of this agreement.
+In the registration process you will be asked to to select a Username and Password that is unique to your account (hereinafter referred to as "Account Information"). You may not share your account information with any party.
+You also agree that the rights belong to the ID is fully owned by GDH as your identification, your right where the ID is limited to use rights.
+User ID on the Test Server is a different / or stand alone from the ID on the official servers.
+
+3. CONFIDENTIALITY OF ACCOUNT INFORMATION ID
+Confidentiality of all information regarding your account ID, including its use, become the responsibility of your own. If there is leakage of your information shall promptly notify GDH by such means have been provided.
+
+4. GDH RIGHTS TO ERASE or block ACCOUNT ID
+GDH has the full right to block, delete, modify, BANNED, kicking AN ACCOUNT ID ANY TIME, WITH OR WITHOUT REASON, WITH OR WITHOUT NOTICE ANNOUNCEMENT. For the purposes of explanation, not as a stipulation, the rule will be enforced when there is a violation of this agreement (Terms of Service) or other regulations issued by GDH.
+
+5. LIMITATION ON USE OF PROGRAMS AND SERVICES
+a. Only GDH, or licensee of the right to provide a host of programs and services. You can not do any hosting or service that resembles to Programs and Services, or impede, or divert to emulate the proprietary communication protocols used by GDH, associated with the program, without exception, whatever the method used. Prohibited methods may include, but are not limited to, protocol emulation, reverse engineering, modifying the program, adding an illegal component into the program, or use a packet sniffer while running program.
+b. You agree not to (i) modify or cause the modification of the parts of the Program or the Service, (ii) create or use cheats, bots, "mods", and / or hacks, or other third party programs, which may interfere or alter the course of Programs and Services, (iii) create or use a third party program to intercept or retrieve information from the Program and Services. Changes in Programs and Services can only be done through a patch or an official update from GDH or any third party programs that have an official license from the GDH.
+c. You are forbidden to interfere with or cause interference to, (i) computer used by the Service (named Servers), (ii) and a computer or gaming experience from other service users. INTENTIONS OR BUSINESS, ALSO ANY KIND, OR SERVICES FOR ANY DAMAGE disrupt PROGRAM CATEGORY can be incorporated into civil VIOLENT OR CRIMINAL OFFENSE. You agree not to violating the rules and regulations that apply when using the Programs and Services.
+
+6. Checking GAME COMPATIBILITY TOOL
+GDH provides OPTIONAL tool, a tool checks the compatibility of the game (Game Compatibility Checker). The function of this tool is to perform checks on the user's environment, in order to ensure the games run smoothly.
+You can use this tool by clicking a tool button, if you are experiencing problems in this play game.Tool checks, collection of environment data to your computer and send it to GDH. GDH would inspect and repair, if found errors in data received GDH, and GDH will implement improvements at the GDH to do any updates.
+Along with this, if you had the tools OPTIONAL click this button, then your actions at declared as your legitimate claim that you understand and agree that GDH will collect data to your computer through this tool with the purpose of repairs so that you can play the game smoothly .
+
+
+7. RULES OF Conduct (Rules of Conduct)
+Rules of Conduct are rules governing behavior in the use of the Programs and Services. Becomes your duty to always understand and know about the Rules of Conduct, also adhere to the rules therein. Rules of Conduct are not made with the aim to charge you, but to maintain security and order in the use of the Programs and Services, where GDH had the right to determine the behaviors that are considered to interrupt Programs and Services, and decide on actions to punish violations of this rule, including Account deletion ID if it is deemed necessary. GDH reserves the right to make changes to the Rules of Conduct at any time with any official notification on the GDH website.
+
+a. Regulations related to use name
+In the use of Program and Services will encounter situations that require selection of good name for an Account Id, or any other features, visible or not visible to other users, which in the electoral process or the use of the name must be according to the guidelines that have been determined or any norm socially-accepted norms. If violations are found in the use of the name, GDH has the full right to change the name, or in more severe cases can revoke your rights on the use of Programs and Services.
+Specifically, you must not use a name that:
+i. Have used another person, with intent to imitate or impersonate any person, including a "Game Master" or the employee or the staff of GDH.
+ii. Containing the elements of language are rough words, others offend, provoke, or against social norms and regulations.
+iii. Imitating figure religion or belief or to use religious titles.
+iv. Touching upon topics relating to Ethnic, Religious, and Ras (SARA).
+v. Using a character that is not uniform (ex: "a; lkdsfjaf", "asdfghjkl").
+vi. Represent or promote, directly atapun indirectly, any product or another company without permission from GDH.
+You may not use alternate characters that can make or resemble the names of which include a ban on top, or use a front and rear which if combined would be included in the category above.
+
+b. Regulations relating to the use of images or image
+In the use Programs and Services will encounter situations requiring the installation of a picture or image by Users, such as, but not limited to, Clan, Clan Logo or Mark or other features, which are prohibited to use a picture or image:
+i. Are trademarks, trademark rights of third parties. If the user is the rightful owner of a trademark rights trademark rights to use such mark in the game, then, if requested by the GDH, the User must provide evidence of enrollment and submit the trademark rights of the department of Intellectual Property Rights ("IPR") relating to the Indonesia.
+In the event of violation of this clause, GDH reserves the right to request a Clan Master concerned to change the image or images that violate this clause with a picture or other image, in the period at the latest 1 (one) month.
+GDH respect of Intellectual Property Rights ("IPR") owned by third parties and this clause is intended to avoid infringement of Intellectual Property Rights ("IPR") owned by third parties.
+
+c. Regulations relating to chat or interact with other users
+Chat is a form of communication between players, some form of interaction that arise in the use of the Programs and Services, hereinafter in this agreement, the form of this interaction will be referred to as "Chat". You hereby agree that GDH supervise the progress in the use of Chat Programs and Services, and any action taken by GDH on the results was entirely the right of supervision of GDH. You also understand that the supervision is not an obligation to GDH, where the risk is fully borne by the use of your chat. In the process of a chat or in other words use of the Program, you are forbidden to:
+i. Removing the text that include (but are not limited to) the rough, dirty, threatened, against social norms, harmful, contains sexual elements, breaking the law, relating to the Interest of Religion and Race (SARA) or memilki elements that can interfere with the security and comfort of other players, including the text game or character to circumvent existing rules.
+ii. Doing Spam or Spamming. In this agreement which is defined as the act of sending spam or text messages repeatedly, either with or without lag time lag time, the purpose or purposes whatsoever. Spam action regarded as a form of communication that interfere with other users. Actions are not limited to chat, but also includes all kinds of action (including, but not limited to third-party program) raises the same or similar effect. GDH in the announcements issued in the Program and Services is not included in the category of Spam.
+iii. Perform actions that can disrupt or damage the smooth running of the chat in the Program or the Service.
+iv. Disseminate or distribute personal information to others, as well as their own, through chat or other features that are available in the Programs and Services.
+v. Imitating or pose as employees or staff of GDH as well as other users of the Programs and Services.
+vi. Participate in an action, which in the provisions made GDH treated as, an act that raises fraud against other users.
+vii. Doing any act which causes intimidation or unwanted attention, which may interfere with other users.
+
+d. Regulations pertaining to gameplay
+Definition of gameplay in this document is a game system that was in the program and services provided by GDH which consists of the interaction between the Program and the Service itself with the user, and interaction between fellow users Programs and Services. GDH fought to keep the gameplay walk safely to create convenience for the users of Programs and Services. For that created the fundamental provisions which are translated back into the policies (Policy) for each program and services provided by GDH, which have the same power with the agreement (Terms of Service) this. You can read the wisdom kebijaksanaaan imposed on Policy and Program Services at each respective website.
+In case of inconsistency between the rules of gameplay in the in-game gameplay policy with a rule in the ToS shall prevail is a rule in the in-game gameplay policy.
+For the basic provisions that are considered as serious violations in the Program and Services, namely:
+i. Use, distribute, or exploit bugs or errors in the program, with any purpose, including, but not limited to, making, using, or distributing third-party programs that can cause disruption to the programs and services, such as, but not limited to, cheat; Duplicate items; Macro.
+ii. Using the tools or facilities in the Program and Services to access the system or network connected to the Programs and Services.
+iii. Admitted as a member or employee of GDH.
+iv. Disseminate the contents of the Programs and Services, without exception, without permission from GDH.
+v. Using Programs and Services as a means of promotion or advertising without permission from GDH.
+vi. Conducting business activities in the Program and the Service without permission from GDH.
+
+8. OWNERSHIP OR SALE OF ACCOUNT ID OR VIRTUAL ITEM
+GDH does not recognize or even responsible for all sorts of exchanges in the Programs and Services involving currencies other than the applicable currency in the Program and the Service itself. Who belong to this category, but not limited to, sales of the Virtual Account ID or item in the Programs and Services. GDH also did not acknowledge the transfer action (moving hands) Account ID. A ID account may only be used by users who register that ID account. GDH will not be responsible if the conflict is caused by things that fall into this category.
+Furthermore, Users are strictly forbidden to sell it in-game currency (Zulie); account ID; characters in-game; Virtual in-game items, OTHER THAN IN CURRENCY CURRENCY IN-GAME, such as, but not limited to, the amount or Dollar. Please refer to clause 1 (one) OWNERSHIP in ToS was that, "All right, over all the contents of the Programs and Services entirely the property of GDH", and GDH as the full and rightful owners of the Game ROSE NOT ALLOW THE SAME ONCE in-game trade for in-game currency (Zulie); account ID; characters in-game; Virtual in-game items, OTHER THAN IN CURRENCY CURRENCY IN-GAME, such as, but not limited to, the amount or the dollar.
+
+9. CHANGES IN TERMS OF SERVICE
+GDH reserves the right to change, modify, add, or eliminate provisions in the Terms of Service or regulatory rules (Policy) issued by GDH other, without prior notice. You are obliged to always know if there is a change in regulations issued by GDH. GDH will always try to issue the official announcement in case of changes, but not responsible for ensuring all users Programs and Services know of any changes.
